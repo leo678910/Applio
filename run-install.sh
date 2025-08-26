@@ -30,13 +30,13 @@ install_ffmpeg() {
         brew install ffmpeg
     elif command -v apt > /dev/null; then
         log_message "Installing FFmpeg using apt..."
-        sudo apt update && sudo apt install -y ffmpeg
+        apt update && apt install -y ffmpeg
     elif command -v pacman > /dev/null; then
         log_message "Installing FFmpeg using pacman..."
-        sudo pacman -Syu --noconfirm ffmpeg
+        pacman -Syu --noconfirm ffmpeg
     elif command -v dnf > /dev/null; then
         log_message "Installing FFmpeg using dnf..."
-        sudo dnf install -y ffmpeg --allowerasing || install_ffmpeg_flatpak
+        dnf install -y ffmpeg --allowerasing || install_ffmpeg_flatpak
     else
         log_message "Unsupported distribution for FFmpeg installation. Trying Flatpak..."
         install_ffmpeg_flatpak
@@ -51,11 +51,11 @@ install_ffmpeg_flatpak() {
     else
         log_message "Flatpak is not installed. Installing Flatpak..."
         if command -v apt > /dev/null; then
-            sudo apt install -y flatpak
+            apt install -y flatpak
         elif command -v pacman > /dev/null; then
-            sudo pacman -Syu --noconfirm flatpak
+            pacman -Syu --noconfirm flatpak
         elif command -v dnf > /dev/null; then
-            sudo dnf install -y flatpak
+            dnf install -y flatpak
         elif command -v brew > /dev/null; then
             brew install flatpak
         else
